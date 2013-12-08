@@ -3,9 +3,12 @@ package practice.SelfTest;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.joda.time.DateTimeConstants;
+import org.joda.time.LocalDate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import practice.algorithm.arrayAndString.StringReplace;
+import practice.java.JodaTime;
 
 /**
  * User: Daniel
@@ -35,11 +38,14 @@ public class SimpleTest {
 
 
 	public static void main(String... args) {
-		SimpleTest.slf4jTest();
+//		SimpleTest.slf4jTest();
+//
+//		final String src = "The standard Java libraries fail to provide enough methods for " +
+//				"manipulation of its core classes.";
+//		SimpleTest.stringReplaceTest(src);
 
-		final String src = "The standard Java libraries fail to provide enough methods for " +
-				"manipulation of its core classes.";
-		SimpleTest.stringReplaceTest(src);
+//		JodaTime.localDateUtil();
+		JodaTime.localDateTimeUtil();
 	}
 
 
