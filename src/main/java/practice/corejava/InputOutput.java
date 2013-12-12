@@ -1,7 +1,6 @@
 package practice.corejava;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.util.Scanner;
 
 import org.slf4j.Logger;
@@ -51,8 +50,65 @@ public class InputOutput {
 		}
 	}
 
+	/**
+	 * BufferedReader: used to get input before Java 5
+	 */
+	public static void bufferedReaderInput() {
+		// read from console
+		InputStreamReader inStream = new InputStreamReader(System.in);
+		BufferedReader consoleBufferedReader = null;
+		String lineInConsole = null;
+		try {
+			consoleBufferedReader = new BufferedReader(inStream);
+			while ((lineInConsole = consoleBufferedReader.readLine()) != null) {
+				logger.info("line in console: {}", lineInConsole);
+			}
+		} catch (IOException ex) {
+			logger.info("io ex", ex);
+		} finally {
+			try {
+				if (null != inStream) {
+					inStream.close();
+				}
+				if (null != consoleBufferedReader) {
+					consoleBufferedReader.close();
+				}
+			} catch (IOException ex) {
+				logger.info("io ex", ex);
+			}
+		}
+
+		// read from file
+		BufferedReader fileBufferedReader = null;
+		File file = null;
+		String lineInFile = null;
+		FileReader fileReader = null;
+		try {
+			file = new File(YouConstants.INPUT_FILE_PATH);
+			fileReader = new FileReader(file);
+			fileBufferedReader = new BufferedReader(fileReader);
+			while ((lineInFile = fileBufferedReader.readLine()) != null) {
+				logger.info("lineInConsole in file: {}", lineInFile);
+			}
+		} catch (IOException ex) {
+			try {
+				if (null != fileReader) {
+					fileReader.close();
+				}
+				if (null != fileBufferedReader) {
+					fileBufferedReader.close();
+				}
+			} catch (IOException ex2) {
+				logger.info("io ex", ex2);
+			}
+		}
+
+	}
+
 
 	public static void main(String... args) {
-		InputOutput.scannerInput();
+//		InputOutput.scannerInput();
+
+		InputOutput.bufferedReaderInput();
 	}
 }
