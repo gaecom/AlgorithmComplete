@@ -1,4 +1,4 @@
-package practice.java;
+package practice.popularLibrary;
 
 import org.joda.time.DateTimeConstants;
 import org.joda.time.LocalDate;
@@ -16,7 +16,7 @@ public class JodaTime {
 	private static Logger logger = LoggerFactory.getLogger(JodaTime.class);
 
 	/**
-	 * LocalDate util
+	 * LocalDate (date): example
 	 */
 	public static void localDateUtil() {
 		// get today and yesterday date string
@@ -41,13 +41,20 @@ public class JodaTime {
 		logger.info("last day of last month: {}", lastDayOfLastMonth);  // last day of last month: 2013-11-30
 	}
 
+	/**
+	 * LocalDateTime (timestamp): example
+	 */
 	public static void localDateTimeUtil() {
 		LocalDateTime now = new LocalDateTime();
 		logger.info("now: {}", now.toString("yyyy-MM-dd HH:mm:ss.SSS"));    // now: 2013-12-08 19:49:43.548
 
 		LocalDateTime afterTenMinutes = now.plusMinutes(10);
 		logger.info("after ten minutes: {}", afterTenMinutes);  // 2013-12-08T20:01:18.801
+	}
 
+	public static void main(String... args) {
+		JodaTime.localDateUtil();
+		JodaTime.localDateTimeUtil();
 	}
 
 
