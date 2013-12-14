@@ -34,17 +34,10 @@ public class SimpleTest {
 	}
 
 
+
+
 	public static void main(String... args) {
-//		SimpleTest.slf4jTest();
-//
-//		final String src = "The standard Java libraries fail to provide enough methods for " +
-//				"manipulation of its core classes.";
-//		SimpleTest.stringReplaceTest(src);
 
-//		JodaTime.localDateUtil();
-//		JodaTime.localDateTimeUtil();
-
-		SimpleTest.envTest();
 	}
 
 
