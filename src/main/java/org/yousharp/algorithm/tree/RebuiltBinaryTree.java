@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.yousharp.algorithm.common.TreeNode;
+import org.yousharp.algorithm.datastructure.TreeNode;
 
 /**
  * 重建二叉树：根据二叉树的前序和中序遍历序列，重建二叉树，并输出二叉树的后序遍历序列。

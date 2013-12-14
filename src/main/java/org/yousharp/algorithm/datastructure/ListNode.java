@@ -1,6 +1,8 @@
-package org.yousharp.algorithm.common;
+package org.yousharp.algorithm.datastructure;
 
 /**
+ * node of a linked list, stack or queue
+ * next: reference to the next node
  * User: Daniel
  * Date: 13-12-14
  * Time: 上午8:19

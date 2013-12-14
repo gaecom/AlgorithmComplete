@@ -2,7 +2,7 @@ package org.yousharp.algorithm.linkedlist;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.yousharp.algorithm.common.ListNode;
+import org.yousharp.algorithm.datastructure.ListNode;
 
 /**题目描述：
  * 给定一个链表，逆序输出节点的值
