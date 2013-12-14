@@ -2,6 +2,7 @@ package org.yousharp.algorithm.datastructure;
 
 /**
  * stack definition
+ * top->next->next->...
  * User: Daniel
  * Date: 13-12-14
  * Time: 上午9:01
