@@ -1,6 +1,8 @@
-package org.algorithm.arrayAndString;
+package org.yousharp.algorithm.arraystring;
 
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * 问题描述：
@@ -10,6 +12,8 @@ import org.apache.commons.lang3.StringUtils;
  * Time: 上午9:39
  */
 public class StringReplace {
+	private static Logger logger = LoggerFactory.getLogger(StringReplace.class);
+
 	private static final char BLANK_CHAR = ' ';
 	private static final String BLANK_STRING = " ";
 	private static final String REPLACE_STRING = "%20";
@@ -19,7 +23,7 @@ public class StringReplace {
 	 * @param src
 	 * @return
 	 */
-	public static String replaceByBuilder(String src) {
+	private static String replaceByBuilder(String src) {
 		if (StringUtils.isEmpty(src)) {
 			return null;
 		}
@@ -39,13 +43,24 @@ public class StringReplace {
 	 * @param src
 	 * @return
 	 */
-	public static String replaceByLibrary(String src) {
+	private static String replaceByLibrary(String src) {
 		if (StringUtils.isEmpty(src)) {
 			return null;
 		}
 
 		String dest = src.replaceAll(BLANK_STRING, REPLACE_STRING);
 		return dest;
+	}
+
+	/**
+	 * test
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		String schoolName = "Nankai University and Tianjin University";
+		String replaceByBuilder = replaceByBuilder(schoolName);
+		String replaceByLibrary = replaceByLibrary(schoolName);
+		logger.info("replaceByBuilder: {}, replaceByLibrary: {}", replaceByBuilder, replaceByLibrary);
 	}
 }
 

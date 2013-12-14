@@ -1,11 +1,10 @@
-package org.SelfTest;
+package org.yousharp.mytest;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.algorithm.arrayAndString.StringReplace;
 
 /**
  * User: Daniel
@@ -26,12 +25,6 @@ public class SimpleTest {
 
 	}
 
-	private static void stringReplaceTest(String src) {
-		String destByBuilder = StringReplace.replaceByBuilder(src);
-		String destByLibrary = StringReplace.replaceByLibrary(src);
-
-		logger.info("src: {}\n destByBuilder: {}\n destByLibrary: {}\n", src, destByBuilder, destByLibrary);
-	}
 
 	private static void envTest() {
 		Map<String, String> env = System.getenv();

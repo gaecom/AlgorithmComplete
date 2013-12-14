@@ -1,9 +1,10 @@
-package org.algorithm.Tree;
+package org.yousharp.algorithm.tree;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.yousharp.algorithm.common.TreeNode;
 
 /**
  * 重建二叉树：根据二叉树的前序和中序遍历序列，重建二叉树，并输出二叉树的后序遍历序列。
@@ -74,6 +75,10 @@ public class RebuiltBinaryTree {
 		logger.info("{} ", root.value);
 	}
 
+	/**
+	 * test
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		Integer[] preOrderArray = {1, 2, 4, 7, 3, 5, 6, 8};
 		Integer[] inOrderArray = {4, 7, 2, 1, 5, 3, 8 , 6};
@@ -85,18 +90,7 @@ public class RebuiltBinaryTree {
 		postOrderTraverse(root);
 	}
 }
-
 /**
- * tree node
+ * 思路：前序遍历的第一个节点总是二叉树的根节点，在中序遍历中查找该节点，左半部分为二叉树的
+ * 左子树，右半部分为右子树，递归即可构建二叉树；可使用图来辅助理解和实现。
  */
- class TreeNode {
-	 int value;
-	 TreeNode left;
-	 TreeNode right;
-
-	 public TreeNode(int value) {
-		 this.value = value;
-		 this.left = null;
-		 this.right = null;
-	 }
- }

@@ -1,4 +1,4 @@
-package org.algorithm.arrayAndString;
+package org.yousharp.algorithm.arraystring;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -22,7 +22,7 @@ public class SearchInTwoDimensionArray {
 	 * @param key       the key to search for in the array
 	 * @return
 	 */
-	public static boolean searchInTwoDimensionArray(int[][] array, int row, int column, int key) {
+	private static boolean searchInTwoDimensionArray(int[][] array, int row, int column, int key) {
 		boolean isFound = false;
 		if (null == array || 0 == array.length || row <= 0 || column <= 0) {
 			return isFound;
