@@ -44,4 +44,18 @@ public class Stack {
 		top = top.next;
 		return topBak;
 	}
+
+	/**
+	 * return the size of the queue
+	 * @return
+	 */
+	public int size() {
+		int size = 0;
+		ListNode topBak = top;
+		while (null != topBak) {
+			size ++;
+			topBak = topBak.next;
+		}
+		return size;
+	}
 }
