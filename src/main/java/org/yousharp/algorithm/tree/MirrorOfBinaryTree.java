@@ -1,7 +1,5 @@
 package org.yousharp.algorithm.tree;
 
-import java.util.LinkedList;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.yousharp.algorithm.datastructure.TreeNode;
@@ -16,6 +14,11 @@ import org.yousharp.algorithm.datastructure.TreeNode;
 public class MirrorOfBinaryTree {
 	private static Logger logger = LoggerFactory.getLogger(MirrorOfBinaryTree.class);
 
+	/**
+	 * get the mirror of a binary tree
+	 * we should reverse the left and right child of each node
+	 * @param head
+	 */
 	private void getMirrorOfTree(TreeNode head) {
 		if (null == head) {
 			return;
@@ -29,24 +32,6 @@ public class MirrorOfBinaryTree {
 		getMirrorOfTree(head.right);
 	}
 
-	private void traverseTreeByTier(TreeNode head) {
-		if (null == head) {
-			return;
-		}
-
-		LinkedList<TreeNode> treeNodes = new LinkedList<TreeNode>();
-		treeNodes.add(head);
-		while (!treeNodes.isEmpty()) {
-			TreeNode node = treeNodes.pollFirst();
-			logger.info("node: {}", node.value);
-			if (null != node.left) {
-				treeNodes.add(node.left);
-			}
-			if (null != node.right) {
-				treeNodes.add(node.right);
-			}
-		}
-	}
 
 	public static void main(String[] args) {
 		TreeNode head = new TreeNode(8);
@@ -58,10 +43,10 @@ public class MirrorOfBinaryTree {
 		head.right.right = new TreeNode(11);
 
 		MirrorOfBinaryTree mirrorOfTree = new MirrorOfBinaryTree();
+		TraverseBinaryTreeByTier tier = new TraverseBinaryTreeByTier();
 
-		mirrorOfTree.traverseTreeByTier(head);
+		tier.traverseBinaryTreeByTier(head);
 		mirrorOfTree.getMirrorOfTree(head);
-		mirrorOfTree.traverseTreeByTier(head);
-
+		tier.traverseBinaryTreeByTier(head);
 	}
 }
