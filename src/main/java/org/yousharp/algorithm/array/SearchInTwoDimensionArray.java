@@ -1,4 +1,4 @@
-package org.yousharp.algorithm.arraystring;
+package org.yousharp.algorithm.array;
 
 import java.util.LinkedHashSet;
 import java.util.Set;

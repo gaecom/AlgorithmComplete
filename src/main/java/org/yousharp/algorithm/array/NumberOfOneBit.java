@@ -1,4 +1,4 @@
-package org.yousharp.algorithm.arraystring;
+package org.yousharp.algorithm.array;
 
 
 import org.slf4j.Logger;
