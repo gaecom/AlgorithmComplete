@@ -1,13 +1,14 @@
-package org.yousharp.algorithm.array;
+package org.yousharp.problems.array;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/** 问题描述：
- *  求Fibonacci序列之和：
- *        |--    0 (n = 0)
+/**
+ * 问题描述：
+ * 求Fibonacci序列之和：
+ * |--    0 (n = 0)
  * f(n) = |--    1 (n = 1)
- *        |--    f(n-1) + f(n-2) (n >= 2)
+ * |--    f(n-1) + f(n-2) (n >= 2)
  * User: Daniel
  * Date: 13-12-17
  * Time: 上午8:03
@@ -17,6 +18,7 @@ public class Fibonacci {
 
 	/**
 	 * recursive method according to the definition
+	 *
 	 * @param n
 	 * @return
 	 */
@@ -33,6 +35,7 @@ public class Fibonacci {
 	/**
 	 * iterative method
 	 * to get f(n), we need to iterate n-1 times
+	 *
 	 * @param n
 	 * @return
 	 */
@@ -58,8 +61,9 @@ public class Fibonacci {
 	/**
 	 * the coefficient follows a rule
 	 * f(n) = f(n-1) + f(n-2) = (1+1)f(n-2) + f(n-2)
-	 *      = (2+1)f(n-2) + 2f(n-3) = ...
+	 * = (2+1)f(n-2) + 2f(n-3) = ...
 	 * which means: f(n) = af(x) + bf(x-1) = (a+b)f(x-1) + bf(x-2)
+	 *
 	 * @param n
 	 * @return
 	 */

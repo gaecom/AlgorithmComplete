@@ -1,12 +1,13 @@
-package org.yousharp.algorithm.tree;
+package org.yousharp.problems.tree;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.yousharp.algorithm.datastructure.TreeNode;
 
-/**问题描述：
- *  两个二叉树，判断二叉树A是否包含二叉树B，
- *  即二叉树B是二叉树A的子结构。
+/**
+ * 问题描述：
+ * 两个二叉树，判断二叉树A是否包含二叉树B，
+ * 即二叉树B是二叉树A的子结构。
  * Uer: Daniel
  * Date: 13-12-22
  * Time: 下午1:59
@@ -17,6 +18,7 @@ public class SubBinaryTree {
 	/**
 	 * check if tree second is the subtree of tree first
 	 * first of all, we should find a node that is identical to the root node of tree second.
+	 *
 	 * @param first
 	 * @param second
 	 * @return
@@ -49,6 +51,7 @@ public class SubBinaryTree {
 	/**
 	 * check if tree first contains tree second
 	 * if any paired nodes are not equal, return false
+	 *
 	 * @param first
 	 * @param second
 	 * @return
@@ -72,6 +75,7 @@ public class SubBinaryTree {
 
 	/**
 	 * test
+	 *
 	 * @param args
 	 */
 	public static void main(String[] args) {

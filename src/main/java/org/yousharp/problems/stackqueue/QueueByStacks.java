@@ -1,4 +1,4 @@
-package org.yousharp.algorithm.stackqueue;
+package org.yousharp.problems.stackqueue;
 
 import java.util.ArrayList;
 
@@ -20,6 +20,7 @@ public class QueueByStacks {
 
 	/**
 	 * enqueue opration
+	 *
 	 * @param newNode
 	 */
 	private void enqueue(ListNode newNode) {
@@ -28,6 +29,7 @@ public class QueueByStacks {
 
 	/**
 	 * dequeue operation
+	 *
 	 * @return
 	 */
 	private ListNode dequeue() {
@@ -48,6 +50,7 @@ public class QueueByStacks {
 
 	/**
 	 * return the size of the current queue
+	 *
 	 * @return
 	 */
 	private int size() {
@@ -56,6 +59,7 @@ public class QueueByStacks {
 
 	/**
 	 * test
+	 *
 	 * @param args
 	 */
 	public static void main(String[] args) {
@@ -68,7 +72,7 @@ public class QueueByStacks {
 
 		QueueByStacks queue = new QueueByStacks();
 
-		for (ListNode node: nodeList) {
+		for (ListNode node : nodeList) {
 			queue.enqueue(node);
 		}
 

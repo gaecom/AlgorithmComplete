@@ -1,4 +1,4 @@
-package org.yousharp.algorithm.array;
+package org.yousharp.problems.array;
 
 
 import org.slf4j.Logger;
@@ -16,6 +16,7 @@ public class NumberOfOneBit {
 
 	/**
 	 * check every bit in the number
+	 *
 	 * @param num
 	 * @return
 	 */
@@ -34,6 +35,7 @@ public class NumberOfOneBit {
 
 	/**
 	 * only check bits that is 1
+	 *
 	 * @param num
 	 * @return
 	 */
@@ -48,6 +50,7 @@ public class NumberOfOneBit {
 
 	/**
 	 * test
+	 *
 	 * @param args
 	 */
 	public static void main(String[] args) {

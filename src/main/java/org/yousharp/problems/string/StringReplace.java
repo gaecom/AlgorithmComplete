@@ -1,4 +1,4 @@
-package org.yousharp.algorithm.string;
+package org.yousharp.problems.string;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -20,6 +20,7 @@ public class StringReplace {
 
 	/**
 	 * replace using StringBuilder
+	 *
 	 * @param src
 	 * @return
 	 */
@@ -27,8 +28,8 @@ public class StringReplace {
 		if (StringUtils.isEmpty(src)) {
 			return null;
 		}
-		StringBuilder dest =new StringBuilder();
-		for (char c: src.toCharArray()) {
+		StringBuilder dest = new StringBuilder();
+		for (char c : src.toCharArray()) {
 			if (BLANK_CHAR == c) {
 				dest.append(REPLACE_STRING);
 			} else {
@@ -40,6 +41,7 @@ public class StringReplace {
 
 	/**
 	 * replace using java library
+	 *
 	 * @param src
 	 * @return
 	 */
@@ -54,6 +56,7 @@ public class StringReplace {
 
 	/**
 	 * test
+	 *
 	 * @param args
 	 */
 	public static void main(String[] args) {

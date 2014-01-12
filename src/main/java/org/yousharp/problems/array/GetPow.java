@@ -1,4 +1,4 @@
-package org.yousharp.algorithm.array;
+package org.yousharp.problems.array;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +15,7 @@ public class GetPow {
 
 	/**
 	 * get the value of pow(base, exponent)
+	 *
 	 * @param base
 	 * @param exponent
 	 * @return
@@ -40,6 +41,7 @@ public class GetPow {
 
 	/**
 	 * test
+	 *
 	 * @param args
 	 */
 	public static void main(String[] args) {

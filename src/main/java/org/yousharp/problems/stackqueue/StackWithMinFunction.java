@@ -1,13 +1,14 @@
-package org.yousharp.algorithm.stackqueue;
+package org.yousharp.problems.stackqueue;
 
 import java.util.LinkedList;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/** 问题描述：
- *  实现一个栈，包含一个返回栈中最小元素的函数，
- *  要求入栈、出栈和返回最小值的时间复杂度均为O(1)
+/**
+ * 问题描述：
+ * 实现一个栈，包含一个返回栈中最小元素的函数，
+ * 要求入栈、出栈和返回最小值的时间复杂度均为O(1)
  * User: Daniel
  * Date: 13-12-24
  * Time: 下午8:36
@@ -19,6 +20,7 @@ public class StackWithMinFunction {
 
 	/**
 	 * push and update the minimal value of the min stack
+	 *
 	 * @param value
 	 */
 	private void push(int value) {
@@ -37,6 +39,7 @@ public class StackWithMinFunction {
 
 	/**
 	 * need to pop out from the min stack
+	 *
 	 * @return
 	 */
 	private int pop() {
@@ -49,6 +52,7 @@ public class StackWithMinFunction {
 
 	/**
 	 * return the first element
+	 *
 	 * @return
 	 */
 	private int min() {

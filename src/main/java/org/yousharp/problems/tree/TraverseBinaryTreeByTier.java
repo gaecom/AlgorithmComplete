@@ -1,4 +1,4 @@
-package org.yousharp.algorithm.tree;
+package org.yousharp.problems.tree;
 
 import java.util.LinkedList;
 
@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.yousharp.algorithm.datastructure.TreeNode;
 
 /**
- *  分层遍历二叉树 * User: Daniel
+ * 分层遍历二叉树 * User: Daniel
  * Date: 13-12-22
  * Time: 下午12:26
  */
@@ -16,6 +16,7 @@ public class TraverseBinaryTreeByTier {
 
 	/**
 	 * traverse a binary tree by tier
+	 *
 	 * @param head
 	 */
 	public void traverseBinaryTreeByTier(TreeNode head) {

@@ -1,12 +1,12 @@
-package org.yousharp.algorithm.tree;
+package org.yousharp.problems.tree;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.yousharp.algorithm.datastructure.TreeNode;
 
 /**
- *  问题描述：
- *   求二叉树的镜像
+ * 问题描述：
+ * 求二叉树的镜像
  * User: Daniel
  * Date: 13-12-22
  * Time: 上午11:29
@@ -17,6 +17,7 @@ public class MirrorOfBinaryTree {
 	/**
 	 * get the mirror of a binary tree
 	 * we should reverse the left and right child of each node
+	 *
 	 * @param head
 	 */
 	private void getMirrorOfTree(TreeNode head) {

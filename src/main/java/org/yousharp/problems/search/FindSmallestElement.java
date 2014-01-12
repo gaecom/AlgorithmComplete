@@ -1,4 +1,4 @@
-package org.yousharp.algorithm.search;
+package org.yousharp.problems.search;
 
 
 import org.slf4j.Logger;
@@ -21,7 +21,8 @@ public class FindSmallestElement {
 	 * 1. get the middle element of the array;
 	 * 2. compare the middle element to the first (or the last) element
 	 * 3. adjust the first (or the last) element
-	 * @param data the array holding the elements
+	 *
+	 * @param data   the array holding the elements
 	 * @param length length of the array
 	 * @return
 	 */
@@ -53,6 +54,7 @@ public class FindSmallestElement {
 
 	/**
 	 * search for the smallest element by traversing the array
+	 *
 	 * @param data
 	 * @param first
 	 * @param last
@@ -70,11 +72,12 @@ public class FindSmallestElement {
 
 	/**
 	 * test
+	 *
 	 * @param args
 	 */
 	public static void main(String[] args) {
 		FindSmallestElement findSmallestElement = new FindSmallestElement();
-		int[] data = new int[] {1, 0, 1, 1, 1};
+		int[] data = new int[]{1, 0, 1, 1, 1};
 		int length = data.length;
 		logger.info("small: {}", findSmallestElement.execute(data, length));
 	}

@@ -1,10 +1,11 @@
-package org.yousharp.algorithm.linkedlist;
+package org.yousharp.problems.linkedlist;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.yousharp.algorithm.datastructure.ListNode;
 
-/**题目描述：
+/**
+ * 题目描述：
  * 给定一个链表，逆序输出节点的值
  * User: Daniel
  * Date: 13-12-8
@@ -15,6 +16,7 @@ public class PrintLinkedListReversely {
 
 	/**
 	 * print a link list reversely
+	 *
 	 * @param head the head node of the link list
 	 */
 	public static void printLinkedListReversely(ListNode head) {
@@ -33,7 +35,7 @@ public class PrintLinkedListReversely {
 		}
 
 		// print node value
-		for (int j = numOfNodes - 1; j >= 0; j --) {
+		for (int j = numOfNodes - 1; j >= 0; j--) {
 			logger.info("{}", allNodes[j].value);
 		}
 	}
@@ -41,6 +43,7 @@ public class PrintLinkedListReversely {
 	/**
 	 * print link list reversely by recursion
 	 * be care of stack overflow
+	 *
 	 * @param head
 	 */
 	public static void printRecursively(ListNode head) {
@@ -54,12 +57,13 @@ public class PrintLinkedListReversely {
 
 	/**
 	 * test
+	 *
 	 * @param args
 	 */
 	public static void main(String[] args) {
 		ListNode head = new ListNode(0);
 		ListNode tmp = head;
-		for (int i = 0; i < 5; i ++) {
+		for (int i = 0; i < 5; i++) {
 			int value = i * 2 + 1;
 			ListNode newNode = new ListNode(value);
 			tmp.next = newNode;

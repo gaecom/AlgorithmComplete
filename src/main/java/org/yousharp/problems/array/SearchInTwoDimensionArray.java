@@ -1,9 +1,10 @@
-package org.yousharp.algorithm.array;
+package org.yousharp.problems.array;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-/**问题描述：一个二维数组，每一行从左到右排序，每一列，从上到下排序（都是升序）；
+/**
+ * 问题描述：一个二维数组，每一行从左到右排序，每一列，从上到下排序（都是升序）；
  * 完成一个函数，输入一个二维数组和一个整数，在该数组中查找该整数是否存在。
  * 2 5 7 9 10
  * 3 8 9 11 13
@@ -16,10 +17,11 @@ import java.util.Set;
 public class SearchInTwoDimensionArray {
 	/**
 	 * search function
-	 * @param array the two dimension array
-	 * @param row   the row of the array
-	 * @param column    the column of the array
-	 * @param key       the key to search for in the array
+	 *
+	 * @param array  the two dimension array
+	 * @param row    the row of the array
+	 * @param column the column of the array
+	 * @param key    the key to search for in the array
 	 * @return
 	 */
 	private static boolean searchInTwoDimensionArray(int[][] array, int row, int column, int key) {
@@ -27,29 +29,29 @@ public class SearchInTwoDimensionArray {
 		if (null == array || 0 == array.length || row <= 0 || column <= 0) {
 			return isFound;
 		}
-		int x = row -1, y = 0;
+		int x = row - 1, y = 0;
 		while (x >= 0 && y < column) {
 			if (array[x][y] == key) {       // found
 				isFound = true;
 				return isFound;
 			} else if (array[x][y] < key) {     // the current column is ignored
-				y ++;
+				y++;
 			} else {            // the current row is ignored
-				x --;
+				x--;
 			}
 		}
 		return isFound;
 	}
 
 	public static void main(String[] args) {
-		int[][] array = {{2,5,7,9,10}, {3,8,9,11,13}, {5,9,12,15,20}, {9,11,32,40,50}};
+		int[][] array = {{2, 5, 7, 9, 10}, {3, 8, 9, 11, 13}, {5, 9, 12, 15, 20}, {9, 11, 32, 40, 50}};
 		int row = 4, column = 5;
 		Set<Integer> keys = new LinkedHashSet<Integer>();
 		keys.add(10);
 		keys.add(50);
 		keys.add(80);
 
-		for (int key: keys) {
+		for (int key : keys) {
 			boolean isFound = searchInTwoDimensionArray(array, row, column, key);
 			System.out.println(isFound);
 		}

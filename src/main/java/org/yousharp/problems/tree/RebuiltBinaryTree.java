@@ -1,7 +1,8 @@
-package org.yousharp.algorithm.tree;
+package org.yousharp.problems.tree;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.yousharp.algorithm.datastructure.TreeNode;
@@ -21,6 +22,7 @@ public class RebuiltBinaryTree {
 
 	/**
 	 * rebuilt binary tree recursively
+	 *
 	 * @param preOrderStart start index of the pre order sequence
 	 * @param preOrderEnd   end index of the pre order sequence
 	 * @param inOrderStart  start index of the in order sequence
@@ -38,7 +40,7 @@ public class RebuiltBinaryTree {
 				return currentRoot;
 			} else {
 				throw new UnsupportedOperationException("invalid input");
-		}
+			}
 
 		// find the root position in [in order] sequence, then the left part is the left child,
 		// and the right part is the right child
@@ -64,6 +66,7 @@ public class RebuiltBinaryTree {
 
 	/**
 	 * post order sequence
+	 *
 	 * @param root
 	 */
 	private static void postOrderTraverse(TreeNode root) {
@@ -77,11 +80,12 @@ public class RebuiltBinaryTree {
 
 	/**
 	 * test
+	 *
 	 * @param args
 	 */
 	public static void main(String[] args) {
 		Integer[] preOrderArray = {1, 2, 4, 7, 3, 5, 6, 8};
-		Integer[] inOrderArray = {4, 7, 2, 1, 5, 3, 8 , 6};
+		Integer[] inOrderArray = {4, 7, 2, 1, 5, 3, 8, 6};
 		preOrder.addAll(Arrays.asList(preOrderArray));
 		inOrder.addAll(Arrays.asList(inOrderArray));
 		int size = preOrder.size();

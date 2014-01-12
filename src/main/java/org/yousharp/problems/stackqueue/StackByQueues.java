@@ -1,4 +1,4 @@
-package org.yousharp.algorithm.stackqueue;
+package org.yousharp.problems.stackqueue;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,6 +19,7 @@ public class StackByQueues {
 	/**
 	 * push an element to the stack
 	 * only one queue is not empty, push is enqueue on the non-empty queue
+	 *
 	 * @param newNode
 	 */
 	private void push(ListNode newNode) {
@@ -35,6 +36,7 @@ public class StackByQueues {
 	 * 1. dequeue all elements except for the front node from q1;
 	 * 2. enqueue all nodes of them to q2;
 	 * 3. dequeue the only node from q1;
+	 *
 	 * @return
 	 */
 	private ListNode pop() {
@@ -59,6 +61,7 @@ public class StackByQueues {
 	/**
 	 * size of the stack
 	 * the peek function is similar to the pop
+	 *
 	 * @return
 	 */
 	private int size() {
@@ -70,6 +73,7 @@ public class StackByQueues {
 
 	/**
 	 * test
+	 *
 	 * @param args
 	 */
 	public static void main(String[] args) {

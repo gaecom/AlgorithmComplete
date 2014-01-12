@@ -1,4 +1,4 @@
-package org.yousharp.algorithm.basic.string;
+package org.yousharp.problems.string;
 
 
 import org.slf4j.Logger;
@@ -18,6 +18,7 @@ public class StringPermutation {
 	 * two parts: the first char and the remaining string, the permutation of which
 	 * can by reached by recursion.
 	 * swap the first char with each char in the current string
+	 *
 	 * @param string
 	 * @param index
 	 */
@@ -46,6 +47,7 @@ public class StringPermutation {
 	/**
 	 * this solution come from Princeton course:
 	 * http://introcs.cs.princeton.edu/java/23recursion/Permutations.java.html
+	 *
 	 * @param prefix
 	 * @param string
 	 */
@@ -55,7 +57,7 @@ public class StringPermutation {
 			logger.info("perm2: {}", prefix);
 		} else {
 			for (int i = 0; i < length; i++) {
-				permTwo(prefix + string.charAt(i), string.substring(0, i) + string.substring(i+1, length));
+				permTwo(prefix + string.charAt(i), string.substring(0, i) + string.substring(i + 1, length));
 			}
 		}
 	}
