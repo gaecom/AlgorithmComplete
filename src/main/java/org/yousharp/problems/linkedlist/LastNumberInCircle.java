@@ -8,8 +8,8 @@ import org.yousharp.algorithm.datastructure.ListNode;
 
 /**
  * there are N numbers in a circle, delete the Mth number every time
- *      from the circle and begin at the 0th number. What is the last number
- *      remained in the circle?
+ *      from the circle and begin at the 0th number, the next begin number is the one
+ *      that after the deleted number. What is the last number remained in the circle?
  * User: Daniel
  * Date: 14-1-17
  * Time: 下午8:42
@@ -20,16 +20,11 @@ public class LastNumberInCircle {
 	/**
 	 * we construct a linked list, and delete the Mth element from the circle each time,
 	 *      remember to move the start node forward after each delete operation.
-	 * @param head
-	 *      the head node of the link list
-	 * @param m
-	 *      delete the Mth number from the list
-	 * @param n
-	 *      the number of numbers in the list
-	 * @return
-	 *      the last remaining number of the list
+	 * @param head  the head node of the link list
+	 * @param m delete the Mth number from the list
+	 * @return  the last remaining number of the list
 	 */
-	public ListNode linkListSolution(ListNode head, int m, int n) {
+	public ListNode linkListSolution(ListNode head, int m) {
 		if (null == head) {
 			return null;
 		}
@@ -53,7 +48,7 @@ public class LastNumberInCircle {
 			// delete the Mth node
 			preNode.next = delNode.next;
 			// the next start node
-			head = head.next;
+			head = preNode.next;
 		}
 		return head;
 	}
@@ -61,14 +56,10 @@ public class LastNumberInCircle {
 	/**
 	 * we do not construct linked list, we use the standard library LinkedList;
 	 *      the key point is to get the next start number.
-	 * @param numberList
-	 *      the LinkedList containing all te numbers
-	 * @param m
-	 *      delete the Mth number from the list
-	 * @param n
-	 *      the number of numbers in the list
-	 * @return
-	 *      the last remaining number
+	 * @param numberList    the LinkedList containing all te numbers
+	 * @param m delete the Mth number from the list
+	 * @param n the number of numbers in the list
+	 * @return  the last remaining number
 	 */
 	public int arrayListSolution(LinkedList<Integer> numberList, int m, int n) {
 		if (null == numberList || 0 == numberList.size()) {
@@ -83,70 +74,78 @@ public class LastNumberInCircle {
 			numberList.remove(delIndex);
 			n = numberList.size();
 			// get the index of the next start number
-			if (start == n) {
+			start = delIndex;
+			if (start >= n) {
 				start = 0;
-			} else {
-				start ++;
 			}
 		}
 		return numberList.getLast();
 	}
 
 	/**
-	 * using the math recursive:
+	 * using the math recursive and implementing by loop:
 	 *      f(n,m) = f'(n-1,m) = (f(n-1,m)+m) % n;
-	 * @param numberList
-	 *      the LinkedList containing all te numbers
-	 * @param m
-	 *      delete the Mth number from the list
-	 * @param n
-	 *      the number of numbers in the list
-	 * @return
-	 *      the last remaining number in the list
+	 * @param numberList    the LinkedList containing all te numbers
+	 * @param m delete the Mth number from the list
+	 * @param n the number of numbers in the list
+	 * @return  the last remaining number in the list
 	 */
 	public int mathSolutionByLoop(LinkedList<Integer> numberList, int m, int n) {
 		if (null == numberList || 0 == numberList.size()) {
 			return -1;
 		}
 		// f(1,m) = 0;
-		int last = numberList.getFirst();
+		int last = 0;
 		// f(n,m) = (f(n-1,m) + m) % n;
 		for (int i = 2; i <= n; i++) {
-			last = numberList.get((i + m) % i);
+			last = (last + m) % i;
 		}
-		return last;
+		return numberList.get(last);
 	}
 
-	public int mathSolutionByRecursive(LinkedList<Integer> numberList, int m, int n) {
-		if (null == numberList || 0 == numberList.size()) {
-			return -1;
-		}
+	/**
+	 * using the math recursive method, and implementing by recursion:
+	 *      f(n,m) = (f(n-1,m) + m) % n
+	 * @param m the Mth element to delete in each recursion
+	 * @param n the number of numbers in the list
+	 * @return  the index of the last number in the list
+	 */
+	public int mathSolutionByRecursive(int m, int n) {
 		if (1 == n) {
-			return numberList.getFirst();
+			return 0;
 		}
-		return mathSolutionByRecursive(numberList, m, n - 1) + numberList.get(m);
+		return (mathSolutionByRecursive(m, n - 1) + m) % n;
 	}
 
 
+	/**
+	 * just for testing
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		LastNumberInCircle lastInstance = new LastNumberInCircle();
-		ListNode head = new ListNode(0);
-		ListNode node1 = head.next = new ListNode(1);
-		ListNode node2 = node1.next = new ListNode(2);
-		ListNode node3 = node2.next = new ListNode(3);
-		ListNode node4 = node3.next = new ListNode(4);
-		logger.info("1. last value is: {}", lastInstance.linkListSolution(head, 3, 5).value);
+		ListNode head = new ListNode(4);
+		ListNode node1 = head.next = new ListNode(7);
+		ListNode node2 = node1.next = new ListNode(9);
+		ListNode node3 = node2.next = new ListNode(2);
+		ListNode node4 = node3.next = new ListNode(13);
+		ListNode node5 = node4.next = new ListNode(98);
+//		ListNode node6 = node5.next = new ListNode(6);
+		logger.info("1. last value is: {}", lastInstance.linkListSolution(head, 4).value);
 
 		LinkedList<Integer> numberList = new LinkedList<Integer>();
-		numberList.add(0);
-		numberList.add(1);
-		numberList.add(2);
-		numberList.add(3);
 		numberList.add(4);
+		numberList.add(7);
+		numberList.add(9);
+		numberList.add(2);
+		numberList.add(13);
+		numberList.add(98);
+//		numberList.add(6);
 		LinkedList<Integer> numberList2 = new LinkedList<Integer>();
 		numberList2.addAll(numberList);
-		logger.info("2. last value is: {}", lastInstance.arrayListSolution(numberList, 3, 5));
-		logger.info("3. last value is: {}", lastInstance.mathSolutionByLoop(numberList2, 3, 5));
-		logger.info("4. last value is: {}", lastInstance.mathSolutionByRecursive(numberList2, 3, 5));
+		logger.info("2. last value is: {}", lastInstance.arrayListSolution(numberList, 4, 6));
+		logger.info("3. last value is: {}", lastInstance.mathSolutionByLoop(numberList2, 4, 6));
+		int index = lastInstance.mathSolutionByRecursive(4, 6);
+		logger.info("4. last value is: {}", numberList2.get(index));
 	}
 }
