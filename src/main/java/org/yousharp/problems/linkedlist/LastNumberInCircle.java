@@ -1,10 +1,10 @@
 package org.yousharp.problems.linkedlist;
 
-import java.util.LinkedList;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.yousharp.algorithm.datastructure.ListNode;
+
+import java.util.LinkedList;
 
 /**
  * there are N numbers in a circle, delete the Mth number every time
@@ -149,3 +149,24 @@ public class LastNumberInCircle {
 		logger.info("4. last value is: {}", numberList2.get(index));
 	}
 }
+
+/**
+ *  问题描述：给定数字序列，长度为n，如0, 1, 2, ... , n-1构成一个圆圈，从第一个数字开始，
+ *      每次从序列中删除第m个元素，删除一个元素后，从删除元素的下一个元素继续，问序列中最后剩下的元素。
+ *   思路：
+ *   1.  构造一个链表，每次从链表中删除第m个元素，直到链表总只剩最后一个元素。
+ *       复杂度：O(n^2)；
+ *   2.   从数学的角度寻找规律：
+ *      f(n,m):  表示从n个元素的序列删除m个元素后最后剩下的元素；
+ *      删除第m个元素后，序列变成了：0, 1, 2, ... , m-2, m, m+1, ..., n-1，即：
+ *      m, m+1, ..., n-1, 0, 1, 2, ..., m-2
+ *      将该序列使用f'(n-1,m)表示，显然有f(n,m) = f'(n-1,m)，因为最后剩下的数字时相同的。
+ *      原序列为的f(n-1,m)为：
+ *      0, 1, 2, ..., n-2
+ *      可见从f(n-1,m)-->f'(n-1, m)的映射关系为：(f(n-1,m)+m)%n，综合：f(n,m) = f'(n-1,m)，得到：
+ *      f(n,m) = f'(n-1,m) = (f(n-1),m) + m) % n;
+ *      所以只要得到f(n-1,m)即可得到f(n,m)，而f(1,m) = 0;所以有：
+ *      f(n,m) = f'(n-1,m) = (f(n-1),m) + m) % n;  (n > 1)
+ *      然后递归或循环都可以实现。
+ *       复杂度：O（n）
+ *       */
