@@ -1,4 +1,4 @@
-package org.designpattern.singleton;
+package org.yousharp.designpattern.singleton;
 
 /**
  * 通过内部类实现单例模式，只有需要时才会创建示例；

@@ -1,4 +1,4 @@
-package org.designpattern.singleton;
+package org.yousharp.designpattern.singleton;
 
 import java.io.Serializable;
 
@@ -12,7 +12,7 @@ import java.io.Serializable;
  * Time: 下午10:23
  */
 public class PerfectSingleton implements Serializable {
-	// searial version id
+	// serial version id
 	private static final long serialVersionUID = 1L;
 
 	// private constructor
@@ -33,3 +33,10 @@ public class PerfectSingleton implements Serializable {
 	}
 
 }
+
+/**
+  * 总之，我们可以发现，一共6中单例模式，可以分为三类：饿汉式、懒汉式和内部类；
+ * 饿汉式：EagerSingleton(使用构造函数)和StaticBlockSingleton（使用静态初始化块）
+ * 懒汉式：LazySingleton（不能用于多线程）和DoubleCheckSingleton（可以用于多线程）
+ * 内部类：InnerClassSingleton（不支持序列化）和PerfectSingleton支持序列化
+  */
