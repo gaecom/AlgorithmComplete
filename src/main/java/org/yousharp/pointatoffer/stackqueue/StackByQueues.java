@@ -1,9 +1,14 @@
 package org.yousharp.pointatoffer.stackqueue;
 
+import java.util.LinkedList;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.yousharp.common.ListNode;
 import org.yousharp.common.Queue;
+import org.yousharp.common.Stack;
+
+import sun.util.logging.resources.logging;
 
 /**
  * implement stack by two queues
@@ -13,81 +18,66 @@ import org.yousharp.common.Queue;
  */
 public class StackByQueues {
 	private static Logger logger = LoggerFactory.getLogger(StackByQueues.class);
-	private Queue firstQueue = new Queue();
-	private Queue secondQueue = new Queue();
+
+	private static LinkedList<Integer> firstQueue = new LinkedList<Integer>();
+	private static LinkedList<Integer> secondQueue = new LinkedList<Integer>();
 
 	/**
 	 * push an element to the stack
-	 * only one queue is not empty, push is enqueue on the non-empty queue
+	 * the queue which is un-empty, is used to add elements
 	 *
-	 * @param newNode
+	 * @param element
 	 */
-	private void push(ListNode newNode) {
-		if (0 == firstQueue.size()) {
-			secondQueue.enqueue(newNode);
-		} else if (0 == secondQueue.size()) {
-			firstQueue.enqueue(newNode);
+	public static void push(int element) {
+		if (firstQueue.isEmpty()) {
+			secondQueue.offer(element);
+		} else {
+			firstQueue.offer(element);
 		}
 	}
 
 	/**
-	 * pop out the top element of the stack
-	 * only one queue is not empty, let's say q1, and q2 is empty
-	 * 1. dequeue all elements except for the front node from q1;
-	 * 2. enqueue all nodes of them to q2;
-	 * 3. dequeue the only node from q1;
+	 * pop and element of the stack
+	 * the last element of the queue which is not empty is ready to pop
 	 *
 	 * @return
 	 */
-	private ListNode pop() {
-		if (0 == firstQueue.size() && 0 == secondQueue.size()) {
-			return null;
-		} else if (0 != firstQueue.size()) {    // q1 is not empty
-			while (firstQueue.size() > 1) {
-				ListNode tailNode = firstQueue.dequeue();
-				secondQueue.enqueue(tailNode);
-			}
-			return firstQueue.dequeue();
-		} else if (0 != secondQueue.size()) {   // q2 is not empty
-			while (secondQueue.size() > 1) {
-				ListNode tailNode = secondQueue.dequeue();
-				firstQueue.enqueue(tailNode);
-			}
-			return secondQueue.dequeue();
+	public static int pop() {
+		if (firstQueue.isEmpty() && secondQueue.isEmpty()) {
+			logger.info("error: the stack is empty.");
+			return Integer.MAX_VALUE;
 		}
-		return null;
+		if (firstQueue.isEmpty()) {
+			while (secondQueue.size() != 1) {
+				int element = secondQueue.poll();
+				firstQueue.offer(element);
+			}
+			return secondQueue.poll();
+		}
+		if (secondQueue.isEmpty()) {
+			while (firstQueue.size() != 1) {
+				int element = firstQueue.poll();
+				secondQueue.offer(element);
+			}
+			return firstQueue.poll();
+		}
+		return Integer.MAX_VALUE;
 	}
 
-	/**
-	 * size of the stack
-	 * the peek function is similar to the pop
-	 *
-	 * @return
-	 */
-	private int size() {
-		int firstSize = firstQueue.size();
-		int secondSize = secondQueue.size();
-		return (firstSize != 0 ? firstSize : secondSize);
-	}
+
 
 
 	/**
-	 * test
+	 * for test
 	 *
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		StackByQueues stack = new StackByQueues();
-		stack.push(new ListNode(1));
-		stack.push(new ListNode(2));
-		stack.push(new ListNode(3));
+		StackByQueues.push(10);
+		StackByQueues.push(20);
+		StackByQueues.push(30);
+		logger.info("{},{},{}", StackByQueues.pop(), StackByQueues.pop(), StackByQueues.pop(), StackByQueues.pop());
 
-		logger.info("size: {}", stack.size());
-		logger.info("top: {}", stack.pop().value);
-		logger.info("top: {}", stack.pop().value);
-
-		stack.push(new ListNode(4));
-		logger.info("top: {}", stack.pop().value);
 	}
 }
 

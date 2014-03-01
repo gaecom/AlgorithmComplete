@@ -1,4 +1,4 @@
-package org.yousharp.pointatoffer.search;
+package org.yousharp.pointatoffer.searchsort;
 
 
 import org.slf4j.Logger;

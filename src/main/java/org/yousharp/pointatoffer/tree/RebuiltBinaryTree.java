@@ -16,57 +16,70 @@ import org.yousharp.common.TreeNode;
 public class RebuiltBinaryTree {
 	private static Logger logger = LoggerFactory.getLogger(RebuiltBinaryTree.class);
 
-	// pre order and in order sequence
-	private static ArrayList<Integer> preOrder = new ArrayList<Integer>();
-	private static ArrayList<Integer> inOrder = new ArrayList<Integer>();
+	// global status
+	private static boolean status = true;
 
 	/**
 	 * rebuilt binary tree recursively
-	 *
-	 * @param preOrderStart start index of the pre order sequence
-	 * @param preOrderEnd   end index of the pre order sequence
-	 * @param inOrderStart  start index of the in order sequence
-	 * @param inOrderEnd    end index of the in order sequence
+	 * @param preOrder  the pre order sequence of the binary tree
+	 * @param preStart  the start index of the pre order sequence
+	 * @param preEnd    the end index of the pre order sequence
+	 * @param inOrder   the post order sequence of the binary tree
+	 * @param inStart   the start index of the in order sequence
+	 * @param inEnd     the end index of the in order sequence
 	 * @return
 	 */
-	private static TreeNode rebuiltBinaryTree(int preOrderStart, int preOrderEnd, int inOrderStart, int inOrderEnd) {
-		// the first value of the pre order sequence is the root
-		int value = preOrder.get(preOrderStart);
-		TreeNode currentRoot = new TreeNode(value);
+	public static TreeNode rebuilt(int[] preOrder, int preStart, int preEnd,
+	                           int[] inOrder, int inStart, int inEnd) {
+		// the root
+		TreeNode root = new TreeNode(preOrder[preStart]);
 
-		// found the last node
-		if ((preOrderStart == preOrderEnd))
-			if ((inOrderStart == inOrderEnd) && preOrder.get(preOrderStart) == inOrder.get(inOrderStart)) {
-				return currentRoot;
+		if ((preStart == preEnd) && (inStart == inEnd)) {
+			if (preOrder[preStart] == inOrder[inStart]) {
+				return root;
 			} else {
-				throw new UnsupportedOperationException("invalid input");
+				logger.info("error input");
+				status = false;
+				return null;
 			}
+		}
 
-		// find the root position in [in order] sequence, then the left part is the left child,
-		// and the right part is the right child
-		int index = inOrder.indexOf(value);
-		if (-1 == index) {
+		int index = indexOf(inOrder, preOrder[preStart]);
+		if (index == -1) {
 			logger.info("error input");
-			throw new UnsupportedOperationException("error input");
+			status = false;
+			return null;
+		}
+		int leftLength = index - inStart;
+		if (index > inStart) {
+			root.left = rebuilt(preOrder, preStart+1, preStart+leftLength,
+					inOrder, inStart, inStart+leftLength-1);
+		}
+		if (index < inEnd) {
+			root.right = rebuilt(preOrder, preStart+leftLength+1, preEnd,
+					inOrder, inStart+leftLength+1, inEnd);
 		}
 
-		int leftLength = index - inOrderStart;
-		// the left child is not empty, then rebuilt it recursively
-		if (leftLength > 0) {
-			currentRoot.left = rebuiltBinaryTree(preOrderStart + 1, preOrderStart + leftLength,
-					inOrderStart, index - 1);
-		}
-		// the right child is not empty, the rebuilt it recursively
-		if (index < inOrderEnd) {
-			currentRoot.right = rebuiltBinaryTree(preOrderStart + leftLength + 1, preOrderEnd,
-					index + 1, inOrderEnd);
-		}
-		return currentRoot;
+		return root;
 	}
 
 	/**
-	 * post order sequence
-	 *
+	 * return the index of an element in an array
+	 * @param data  the array to search
+	 * @param key   the key to search for
+	 * @return
+	 */
+	public static int indexOf(int[] data, int key) {
+		for (int i = 0; i < data.length; i++) {
+			if (data[i] == key) {
+				return i;
+			}
+		}
+		return -1;
+	}
+
+	/**
+	 * post order sequence of the binary tree
 	 * @param root
 	 */
 	private static void postOrderTraverse(TreeNode root) {
@@ -84,14 +97,15 @@ public class RebuiltBinaryTree {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		Integer[] preOrderArray = {1, 2, 4, 7, 3, 5, 6, 8};
-		Integer[] inOrderArray = {4, 7, 2, 1, 5, 3, 8, 6};
-		preOrder.addAll(Arrays.asList(preOrderArray));
-		inOrder.addAll(Arrays.asList(inOrderArray));
-		int size = preOrder.size();
-		TreeNode root = rebuiltBinaryTree(0, size - 1, 0, size - 1);
-		logger.info("tree root: {}", root.value);
-		postOrderTraverse(root);
+		int[] pre = {1, 2, 4, 7, 3, 5, 6, 8};
+		int[] in = {4, 7, 2, 1, 5, 3, 8, 8};
+
+		TreeNode r = rebuilt(pre, 0, pre.length-1, in, 0, in.length-1);
+		if (status) {
+			postOrderTraverse(r);
+		} else{
+			logger.info("input error, rebuilt failed.");
+		}
 	}
 }
 /**

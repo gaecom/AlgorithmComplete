@@ -1,10 +1,12 @@
 package org.yousharp.pointatoffer.stackqueue;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.yousharp.common.ListNode;
+import org.yousharp.common.Queue;
 import org.yousharp.common.Stack;
 
 /**
@@ -15,75 +17,53 @@ import org.yousharp.common.Stack;
  */
 public class QueueByStacks {
 	private static Logger logger = LoggerFactory.getLogger(QueueByStacks.class);
-	private static Stack firstStack = new Stack();
-	private static Stack secondStack = new Stack();
+
+	private static LinkedList<Integer> firstStack = new LinkedList<Integer>();
+	private static LinkedList<Integer> secondStack = new LinkedList<Integer>();
 
 	/**
-	 * enqueue opration
-	 *
-	 * @param newNode
-	 */
-	private void enqueue(ListNode newNode) {
-		firstStack.push(newNode);
-	}
-
-	/**
-	 * dequeue operation
-	 *
+	 * get an element out of the queue
+	 * the second stack is used to dequeue
 	 * @return
 	 */
-	private ListNode dequeue() {
-		if (secondStack.size() <= 0) {
-			while (firstStack.size() > 0) {
-				ListNode firstTopBak = firstStack.peek();
-				firstStack.pop();
-				secondStack.push(firstTopBak);
-			}
-			if (secondStack.size() <= 0) {
-				logger.info("two stacks are empty, cannot dequeue.");
+	public static int deQueue() {
+		if (secondStack.isEmpty()) {
+			while (!firstStack.isEmpty()) {
+				int element = firstStack.pop();
+				secondStack.push(element);
 			}
 		}
-		ListNode secondTopBak = new ListNode(secondStack.peek().value);
-		secondStack.pop();
-		return secondTopBak;
+		if (secondStack.isEmpty()) {
+			logger.info("error: queue is empty!");
+			return Integer.MAX_VALUE;
+		}
+		return secondStack.pop();
 	}
 
 	/**
-	 * return the size of the current queue
-	 *
-	 * @return
+	 * insert an element to the queue
+	 * the first stack is used to enqueue
+	 * @param element
 	 */
-	private int size() {
-		return (firstStack.size() + secondStack.size());
+	public static void enQueue(int element) {
+		firstStack.push(element);
 	}
 
 	/**
-	 * test
-	 *
+	 * for test
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		ArrayList<ListNode> nodeList = new ArrayList<ListNode>();
-		nodeList.add(new ListNode(1));
-		nodeList.add(new ListNode(2));
-		nodeList.add(new ListNode(3));
-		nodeList.add(new ListNode(4));
-		nodeList.add(new ListNode(5));
+		QueueByStacks.enQueue(10);
+		QueueByStacks.enQueue(20);
+		QueueByStacks.enQueue(30);
 
-		QueueByStacks queue = new QueueByStacks();
-
-		for (ListNode node : nodeList) {
-			queue.enqueue(node);
-		}
-
-		while (queue.size() > 0) {
-			logger.info("queue size: {}", queue.size());
-			logger.info("queue member: {}", queue.dequeue().value);
-		}
+		logger.info("{}, {}, {}", QueueByStacks.deQueue(), QueueByStacks.deQueue(), QueueByStacks.deQueue());
 	}
 }
 
 /**
  *  思路：栈1用来入队，栈2用来出队；
- *  如果栈2为空，则将栈1中的所有元素依次出栈并放入栈2中。
+ *  出队列时：如果栈2为空，则将栈1中的所有元素依次出栈并放入栈2中。
+ *  入队列：直接将元素压入栈1中。
  */

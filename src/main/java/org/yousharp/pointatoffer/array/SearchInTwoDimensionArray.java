@@ -4,7 +4,7 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 /**
- * 问题描述：一个二维数组，每一行从左到右排序，每一列，从上到下排序（都是升序）；
+ * 问题描述：一个二维数组，每一行从左到右自增有序，每一列从上到下自增有序；
  * 完成一个函数，输入一个二维数组和一个整数，在该数组中查找该整数是否存在。
  * 2 5 7 9 10
  * 3 8 9 11 13
@@ -29,8 +29,10 @@ public class SearchInTwoDimensionArray {
 		if (null == array || 0 == array.length || row <= 0 || column <= 0) {
 			return isFound;
 		}
+
+		// core of the algorithm
 		int x = row - 1, y = 0;
-		while (x >= 0 && y < column) {
+		while (x >= 0 && y <= column - 1) {
 			if (array[x][y] == key) {       // found
 				isFound = true;
 				return isFound;

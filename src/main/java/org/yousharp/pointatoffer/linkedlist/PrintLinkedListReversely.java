@@ -1,5 +1,8 @@
 package org.yousharp.pointatoffer.linkedlist;
 
+import java.util.Iterator;
+import java.util.LinkedList;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.yousharp.common.ListNode;
@@ -15,44 +18,37 @@ public class PrintLinkedListReversely {
 	private static Logger logger = LoggerFactory.getLogger(PrintLinkedListReversely.class);
 
 	/**
-	 * print a link list reversely
-	 *
-	 * @param head the head node of the link list
+	 * implement by stack
+	 * note: LinkedList can be used as both stack and queue in Java
+	 * @param head the head of the link list
 	 */
-	public static void printLinkedListReversely(ListNode head) {
+	public static void stackImpl(LinkedList<Integer> head) {
 		if (null == head) {
 			return;
 		}
+		LinkedList<Integer> tmp = new LinkedList<Integer>();
 
-		// define an array to hold all the nodes in the link list
-		ListNode[] allNodes = new ListNode[100];
-		int numOfNodes = 0;
-
-		// traverse and save all nodes
-		while (null != head) {
-			allNodes[numOfNodes++] = head;
-			head = head.next;
+		Iterator<Integer> iter = head.iterator();
+		while (iter.hasNext()) {
+			tmp.push(iter.next());
 		}
 
-		// print node value
-		for (int j = numOfNodes - 1; j >= 0; j--) {
-			logger.info("{}", allNodes[j].value);
+		while (!tmp.isEmpty()) {
+			logger.info("node: {}", tmp.pop());
 		}
 	}
 
 	/**
-	 * print link list reversely by recursion
+	 * recursive implementation
 	 * be care of stack overflow
-	 *
 	 * @param head
 	 */
-	public static void printRecursively(ListNode head) {
+	public static void recursionImpl(ListNode head) {
 		if (null == head) {
 			return;
 		}
-
-		printRecursively(head.next);
-		logger.info("{}", head.value);
+		recursionImpl(head.next);
+		logger.info("node: {}", head.value);
 	}
 
 	/**
@@ -61,17 +57,14 @@ public class PrintLinkedListReversely {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		ListNode head = new ListNode(0);
-		ListNode tmp = head;
-		for (int i = 0; i < 5; i++) {
-			int value = i * 2 + 1;
-			ListNode newNode = new ListNode(value);
-			tmp.next = newNode;
-			tmp = newNode;
-		}
+		LinkedList<Integer> list = new LinkedList<Integer>();
+		list.add(10);
+		list.add(20);
+		list.add(30);
+		list.add(40);
 
-		printLinkedListReversely(head);
-		printRecursively(head);
+		stackImpl(list);
+
 	}
 }
 
