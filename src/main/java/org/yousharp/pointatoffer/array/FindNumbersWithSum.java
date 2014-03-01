@@ -1,4 +1,5 @@
-// import 
+package org.yousharp.pointatoffer.array;
+// import
 
 public class FindNumbersWithSum {
 	// private static Logger logger = LoggerFactory.getLogger(FindNumbersWithSum.class);

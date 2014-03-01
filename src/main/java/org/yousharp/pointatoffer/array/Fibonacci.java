@@ -50,7 +50,7 @@ public class Fibonacci {
 		long f0 = 0;
 		long f1 = 1;
 		long f = 0;
-		for (int i = 0; i < n - 1; i++) {
+		for (int i = 2; i <= n; i++) {
 			f = f0 + f1;
 			f0 = f1;
 			f1 = f;
@@ -60,9 +60,9 @@ public class Fibonacci {
 
 	/**
 	 * the coefficient follows a rule
-	 * f(n) = f(n-1) + f(n-2) = (1+1)f(n-2) + f(n-2)
-	 * = (2+1)f(n-2) + 2f(n-3) = ...
-	 * which means: f(n) = af(x) + bf(x-1) = (a+b)f(x-1) + bf(x-2)
+	 * f(n) = f(n-1) + f(n-2) = (1+1)f(n-2) + f(n-3)
+	 * = (2+1)f(n-3) + 2f(n-4) = ...
+	 * which means: f(n) = af(x) + bf(x-1) = (a+b)f(x-1) + af(x-2)
 	 *
 	 * @param n
 	 * @return
@@ -76,8 +76,8 @@ public class Fibonacci {
 		}
 
 		// change the coefficient
-		long a = 1, b = 1;
-		for (int i = 0; i < n - 2; i++) {
+		long a = 1, b = 0;
+		for (int i = 2; i <= n; i++) {
 			long tmp = a;
 			a = a + b;
 			b = tmp;
@@ -88,7 +88,7 @@ public class Fibonacci {
 	public static void main(String[] args) {
 		Fibonacci fibonacci = new Fibonacci();
 		int n = 20;
-//		logger.info("recursive result = {}", fibonacci.recursiveMethod(n));
+		logger.info("recursive result = {}", fibonacci.recursiveMethod(n));
 		logger.info("iterative result = {}", fibonacci.iterativeMethod(n));
 		logger.info("coefficient result = {}", fibonacci.coefficientMethod(n));
 	}
