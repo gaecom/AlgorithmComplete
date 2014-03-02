@@ -24,8 +24,7 @@ public class NumberOfOneBit {
 		int flag = 1;
 		int count = 0;
 		while (flag != 0) {
-			int x = (flag & num);
-			if (x != 0) {
+			if ((flag & num) == 1) {
 				count++;
 			}
 			flag = (flag << 1);
