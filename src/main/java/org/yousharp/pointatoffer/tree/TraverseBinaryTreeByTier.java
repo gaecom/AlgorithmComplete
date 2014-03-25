@@ -12,14 +12,14 @@ import org.yousharp.common.TreeNode;
  * Time: 下午12:26
  */
 public class TraverseBinaryTreeByTier {
-	private Logger logger = LoggerFactory.getLogger(TraverseBinaryTreeByTier.class);
+	private static Logger logger = LoggerFactory.getLogger(TraverseBinaryTreeByTier.class);
 
 	/**
 	 * traverse a binary tree by tier
 	 *
 	 * @param head
 	 */
-	public void traverseBinaryTreeByTier(TreeNode head) {
+	public static void traverse(TreeNode head) {
 		if (null == head) {
 			return;
 		}

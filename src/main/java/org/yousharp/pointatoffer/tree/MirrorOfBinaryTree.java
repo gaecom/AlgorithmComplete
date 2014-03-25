@@ -1,36 +1,63 @@
 package org.yousharp.pointatoffer.tree;
 
+import java.util.LinkedList;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.yousharp.common.TreeNode;
 
 /**
- * 问题描述：
- * 求二叉树的镜像
+ * 问题描述：求二叉树的镜像
+ *
  * User: Daniel
  * Date: 13-12-22
  * Time: 上午11:29
  */
+
 public class MirrorOfBinaryTree {
 	private static Logger logger = LoggerFactory.getLogger(MirrorOfBinaryTree.class);
 
 	/**
-	 * get the mirror of a binary tree
-	 * we should reverse the left and right child of each node
+	 * recursion method
 	 *
-	 * @param head
+	 * @param root  the root of the tree
 	 */
-	private void getMirrorOfTree(TreeNode head) {
-		if (null == head) {
+	private static void mirrorByRecursion(TreeNode root) {
+		if (null == root) {
 			return;
 		}
 
-		TreeNode leftBak = head.left;
-		head.left = head.right;
-		head.right = leftBak;
+		// swap left child and right child of the current node
+		TreeNode leftBak = root.left;
+		root.left = root.right;
+		root.right = leftBak;
 
-		getMirrorOfTree(head.left);
-		getMirrorOfTree(head.right);
+		// swap left child tree and right child tree by recursion
+		mirrorByRecursion(root.left);
+		mirrorByRecursion(root.right);
+	}
+
+	/**
+	 * loop method: with the help of a stack, traverse the tree breadth-first
+	 *
+	 * @param root the root of the tree
+	 */
+	public static void mirrorByLoop(TreeNode root) {
+		LinkedList<TreeNode> stack = new LinkedList<TreeNode>();
+		stack.push(root);   // push the root to the stack
+		while (!stack.isEmpty()) {
+			TreeNode currNode = stack.pop();    // get the top node
+			if (currNode != null) {
+				// push left and right children
+				stack.push(currNode.left);
+				stack.push(currNode.right);
+
+				// swap left and right children
+				TreeNode leftBak = currNode.left;
+				currNode.left = currNode.right;
+				currNode.right = leftBak;
+			}
+		}
 	}
 
 
@@ -43,11 +70,10 @@ public class MirrorOfBinaryTree {
 		head.right.left = new TreeNode(9);
 		head.right.right = new TreeNode(11);
 
-		MirrorOfBinaryTree mirrorOfTree = new MirrorOfBinaryTree();
-		TraverseBinaryTreeByTier tier = new TraverseBinaryTreeByTier();
 
-		tier.traverseBinaryTreeByTier(head);
-		mirrorOfTree.getMirrorOfTree(head);
-		tier.traverseBinaryTreeByTier(head);
+		TraverseBinaryTreeByTier.traverse(head);
+//		MirrorOfBinaryTree.mirrorByRecursion(head);
+		MirrorOfBinaryTree.mirrorByLoop(head);
+		TraverseBinaryTreeByTier.traverse(head);
 	}
 }
